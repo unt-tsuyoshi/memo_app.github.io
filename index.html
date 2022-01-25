@@ -8,6 +8,7 @@
   <title>memo_app</title>
 </head>
 <body>
+  <script defer>"use strict";const saveBtn=document.querySelector('.memo_btn');const clearBtn=document.querySelector('.memo_initialize');const table_body=document.querySelector('.table_body');let input_value;let data=[];function createMemo(){getInputValue();setData(input_value);loadLocalStorage();setHtmlToTable()} function getInputValue(){input_value=document.querySelector('.memo_input').value} function setData(input_value){let now=new Date();let fullDate=`${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;data.unshift({message:input_value,date:fullDate});localStorage.setItem('memo_data',JSON.stringify(data))} function loadLocalStorage(){let loadData=JSON.parse(localStorage.getItem('memo_data'));data=loadData?loadData:[]} function setHtmlToTable(){let tableHtml="";for(let item of data){tableHtml+=`<tr><td>${item.message}</td><td>${item.date}</td></tr>`;table_body.innerHTML=tableHtml}} function clearLocalStorage(){localStorage.clear();data=[];table_body.innerHTML=''} saveBtn.addEventListener('click',()=>{createMemo()});clearBtn.addEventListener('click',()=>{clearLocalStorage()});window.addEventListener('load',()=>{loadLocalStorage();setHtmlToTable()})</script>
   <div class="memo">
     <div class="memo_top">
       <h1>memo</h1>
